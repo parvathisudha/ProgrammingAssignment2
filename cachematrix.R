@@ -33,6 +33,7 @@ inv<-NULL
 ## However, it first checks to see if the inverse has already been calculated.
 ## If so, it gets the inverse from the cache and skips the computation.
 # Otherwise, it calculates the inverse of the matrix and sets the inverse matrix in the cache via the setinverse function.
+
 cacheSolve <- function(x, ...) {
 ## Return a matrix that is the inverse of 'x'
 inv<-x$getinverse()
@@ -46,3 +47,27 @@ inv<-x$getinverse()
   inv
 }
 
+
+## Example:
+## > mat <- matrix(c(1,0,5,2,1,6,3,4,0),nrow = 3,ncol = 3)
+## > print(mat)
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    0    1    4
+## [3,]    5    6    0
+## > mc <- makeCacheMatrix(mat)
+## > mc$get()
+##      [,1] [,2] [,3]
+## [1,]    1    2    3
+## [2,]    0    1    4
+## [3,]    5    6    0
+## > cacheSolve(mc)
+##      [,1] [,2] [,3]
+## [1,]  -24   18    5
+## [2,]   20  -15   -4
+## [3,]   -5    4    1
+## > mc$getinverse()
+##      [,1] [,2] [,3]
+## [1,]  -24   18    5
+## [2,]   20  -15   -4
+## [3,]   -5    4    1
